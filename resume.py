@@ -62,7 +62,7 @@ st.markdown(f"""
 
 /* Headers & text */
 h1, h2, h3, h4, h5, h6, p, li {{
-    color: #0D1B2A; /* Dark blue */
+    color: #0D1B2A !important;
     font-family: 'Segoe UI', sans-serif;
 }}
 
