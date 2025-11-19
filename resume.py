@@ -26,7 +26,7 @@ def pastel_color_func(word, font_size, position, orientation, random_state=None,
 
 
 # Page config
-st.set_page_config(page_title="Vikas Resume", layout="centered", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Vikas Resume", layout="wide", initial_sidebar_state="expanded")
 
 # WordCloud
 text = """Data Data Science Data Analytics Python Python Machine Learning AML CFT Econometrics Model Risk Management Risk Statistical Modelling Time Series Fraud Detection Data Visualization Data Engineering Exploratory Data Analysis Financial Crime Compliance FCC Limited Dependent Variable Analysis Hypothesis Testing Sampling Data Science Python Econometrics Machine Learning AI Python Risk Modeling Compliance Analytics Python SAS Analytics Data Modeling Machine Learning Compliance Fraud Detection Forecasting Time Series Statistical Visualization Tableau Automation Risk Project Management Teamwork Econometrics Regulatory"""
@@ -49,7 +49,7 @@ st.markdown(f"""
     color: #f1f1f1;
 }}
 [data-testid="stToolbar"] {{
-    background-color: #1c1c1c;
+    background-color: #fdfaf6;
 }}
 
 /* Main app background */
@@ -79,8 +79,8 @@ h1, h2, h3, h4, h5, h6, p, li {{
 .stProgress .st-bo {{
     height: 10px;
     border-radius: 15px;
-    background-color: #1f77b4; /* Blue progress bars */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);}}
+    background-color: #2E86C1; /* Blue progress bars */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -93,9 +93,14 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Career Accomplishments
-st.subheader("Career Accomplishments")
-st.markdown("""
+def centered_container(content_func):
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        content_func()
+
+
+centered_container(lambda: st.subheader("Career Accomplishments"))
+centered_container(lambda: st.markdown("""
 - Led AML/CFT monitoring systems with SAS 8.3
 - Built stress testing models in Python
 - Fraud detection with Isolation Forest & One-Class SVM
@@ -105,11 +110,10 @@ st.markdown("""
 - Predictive models for churn & demand forecasting
 - Conducted Python & PySpark training
 - Produced regulatory dashboards in Tableau
-""")
+"""))
 
-# Work Experience
-st.subheader("Work Experience")
-st.markdown("""
+centered_container(lambda: st.subheader("Work Experience"))
+centered_container(lambda: st.markdown("""
 **Asst Manager, Compliance – RAKBANK (Feb 2023 – Present)**  
 - Deployed SAS 8.3 AML/CFT surveillance
 - Designed GMM segmentation for customers
@@ -129,13 +133,13 @@ st.markdown("""
 - Built churn prediction & demand forecasting models
 - Migrated ETL pipelines from SAS → Python
 - Data storytelling with Tableau
-""")
+"""))
 
 # Skills
-st.subheader("Technical Skills & Focus Areas")
-col1, col2 = st.columns([1,1])
+col1, space1, col2, space1, col3, space1, col4= st.columns([1,.2,1,.2,1,.2,1])
 
-with col1:
+with col2:
+    st.subheader("Technical Skills")
     skills = {
         "Python": 90,
         "R": 70,
@@ -148,37 +152,50 @@ with col1:
         st.markdown(f"**{skill}**")
         st.progress(level/100)
 
-with col2:
-    st.markdown("**Focus Areas**")
-    st.markdown("Data Science, Machine Learning, AML/CFT, Econometrics, AI, Python, Risk Modeling, Compliance, Analytics")
+with col3:
+    st.subheader("Professional Focus Areas")
+    st.markdown(""" 
+                - Process Automation and AI Integration
+                - Data Science & Modelling
+                - Machine Learning
+                - Data Engineering
+                - Data Visualization 
+                - FCC Compliance
+                - Fraud Detection
+                - Risk Modeling
+                - Econometrics
+                - Compliance Analytics
+                - Time Series Forecasting
+                - Statistical Modelling
+                """)
 
 # Education
-st.subheader("Education")
-st.markdown("""
+centered_container(lambda: st.subheader("Education"))
+centered_container(lambda: st.markdown("""
 - **M.Sc. Economics**, Madras School of Economics (2015 – 2017)  
 - **B.A. Economics**, Delhi University (2011 – 2014)
-""")
+"""))
 
 # Certifications
-st.subheader("Courses & Certifications")
-st.markdown("""
+centered_container(lambda: st.subheader("Courses & Certifications"))
+centered_container(lambda: st.markdown("""
 - Certified Anti-Money Laundering Specialist (CAMS), ACAMS (2025)
 - Agentic AI for Developers (Enterprise Applications)
 - OpenAI API for Python Developers – LinkedIn
 - SAS Programming 1: Essentials – Credly
 - Python for Data Science – Microsoft
-""")
+"""))
 
 # Personal Details
-st.subheader("Personal Details")
-st.markdown("""
+centered_container(lambda: st.subheader("Personal Details"))
+centered_container(lambda: st.markdown("""
 - **Nationality**: Indian  
 - **Location**: Dubai, UAE
-""")
+"""))
 
 # Footer
-st.markdown("""
+centered_container(lambda: st.markdown("""
 <div style="text-align: center; margin-top: 40px;">
-    <p>© 2023 Vikas Dharam Pal. All rights reserved.</p>
+    <p>© 2025 Vikas Dharam Pal. All rights reserved.</p>
 </div>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True))
