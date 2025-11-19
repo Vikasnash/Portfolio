@@ -14,7 +14,16 @@ pastel_colors = [
 
 
 def pastel_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return random.choice(pastel_colors)
+    # Map font size to color intensity
+    intensity = min(len(pastel_colors) - 1, font_size // 10)
+    
+    # Use word hash to ensure consistent color per word
+    index = hash(word) % len(pastel_colors)
+    
+    # Blend both influences
+    final_index = (intensity + index) % len(pastel_colors)
+    return pastel_colors[final_index]
+
 
 # Page config
 st.set_page_config(page_title="Vikas Resume", layout="centered", initial_sidebar_state="expanded")
